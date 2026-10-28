@@ -76,6 +76,7 @@ public class EstudianteServlet extends HttpServlet {
         }
         return null;
     }
+    
 
     // =====================================================================
     // ETAPA 6. Mostrar (GET)
@@ -89,6 +90,11 @@ public class EstudianteServlet extends HttpServlet {
         // YA RESUELTO: "nuevo" muestra el formulario vacío.
         if ("nuevo".equals(accion)) {
             request.getRequestDispatcher(VISTA_FORMULARIO).forward(request, response);
+            return;
+        }
+        if ("listar".equals(accion) || accion == null) {
+            request.setAttribute("estudiantes", dao.listar());
+            request.getRequestDispatcher(VISTA_LISTAR).forward(request, response);
             return;
         }
 
